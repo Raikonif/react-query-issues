@@ -2,13 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import { githubApi } from "../../api/githubApi";
 import { Label } from "../../interfaces/Label";
 import useLabels from "../../hooks/useLabels";
+import LoadingIcon from "../../shared/components/LoadingIcon";
 
 export const LabelPicker = () => {
   const labelQuery = useLabels();
 
   if (labelQuery.isLoading) {
     //isLoading no es lo mismo que isFetching
-    return <div>Loading...</div>; // isLoading es true solo cuando se esta cargando por primera vez
+    return <LoadingIcon />; // isLoading es true solo cuando se esta cargando por primera vez
     // isFetching es true cuando se esta refrescando los datos
   }
 
