@@ -3,8 +3,14 @@ import { githubApi } from "../../api/githubApi";
 import { Label } from "../../interfaces/Label";
 import useLabels from "../../hooks/useLabels";
 import LoadingIcon from "../../shared/components/LoadingIcon";
+import { FC } from "react";
 
-export const LabelPicker = () => {
+interface Props {
+  selectedLabel: string[];
+  onChange: (label: string) => void;
+}
+
+export const LabelPicker: FC<Props> = ({ selectedLabel, onChange }) => {
   const labelQuery = useLabels();
 
   if (labelQuery.isLoading) {
@@ -18,11 +24,14 @@ export const LabelPicker = () => {
       {labelQuery.data?.map((label: Label) => (
         <span
           key={label.id}
-          className="badge rounded-pill m-1 label-picker"
+          className={`badge rounded-pill m-1 label-picker ${
+            selectedLabel.includes(label.name) ? "label-active" : ""
+          }`}
           style={{
             border: `1px solid #${label.color}`,
             color: `#${label.color}`,
           }}
+          onClick={() => onChange(label.name)}
         >
           {label.name}
         </span>
