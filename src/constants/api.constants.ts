@@ -1,0 +1,1 @@
+export const VITE_BEARER_TOKEN = import.meta.env.VITE_BEARER_TOKEN

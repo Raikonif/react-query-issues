@@ -1,3 +1,4 @@
 import axios from "axios";
+import { VITE_BEARER_TOKEN } from "../constants/api.constants";
 
-export const githubApi = axios.create({ baseURL: "https://api.github.com/repos/facebook/react", headers: { Authorization: "Bearer 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" } })
+export const githubApi = axios.create({ baseURL: "https://api.github.com/repos/facebook/react", headers: { Authorization: `Bearer ${VITE_BEARER_TOKEN}` } })
