@@ -11,7 +11,7 @@ export interface Issue {
     title:                    string;
     user:                     User;
     labels:                   Label[];
-    state:                    string;
+    state:                    State;
     locked:                   boolean;
     assignee:                 null;
     assignees:                any[];
@@ -20,15 +20,23 @@ export interface Issue {
     created_at:               Date;
     updated_at:               Date;
     closed_at:                null;
-    author_association:       string;
+    author_association:       AuthorAssociation;
     active_lock_reason:       null;
-    draft:                    boolean;
-    pull_request:             PullRequest;
+    draft?:                   boolean;
+    pull_request?:            PullRequest;
     body:                     string;
+    closed_by:                null;
     reactions:                Reactions;
     timeline_url:             string;
     performed_via_github_app: null;
     state_reason:             null;
+}
+
+export enum AuthorAssociation {
+    Collaborator = "COLLABORATOR",
+    Contributor = "CONTRIBUTOR",
+    Member = "MEMBER",
+    None = "NONE",
 }
 
 export interface Label {
@@ -62,6 +70,11 @@ export interface Reactions {
     eyes:        number;
 }
 
+export enum State {
+    Open = "open",
+    Close = "close"
+}
+
 export interface User {
     login:               string;
     id:                  number;
@@ -79,6 +92,11 @@ export interface User {
     repos_url:           string;
     events_url:          string;
     received_events_url: string;
-    type:                string;
+    type:                Type;
     site_admin:          boolean;
+}
+
+export enum Type {
+    Bot = "Bot",
+    User = "User",
 }
