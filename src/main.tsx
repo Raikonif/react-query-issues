@@ -9,7 +9,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles.css";
 
-const client = new QueryClient();
+const client = new QueryClient({});
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
